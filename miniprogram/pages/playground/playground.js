@@ -92,10 +92,11 @@ Page({
   onPullDownRefresh: function () {
     const db = wx.cloud.database();
     db.collection('performance').where({
-      time: app.getApp.time
+      time: app.globalData.time
     }).get().then(res => {
       this.setData({ performance: res.data })
     })
+    wx.stopPullDownRefresh();
   },
 
   /**

@@ -15,7 +15,8 @@ App({
       })
     }
     
-    const time = new Date().toLocaleDateString();
+    let date = new Date();
+    let time = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
 
     this.globalData = {
       time:time,

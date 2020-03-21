@@ -96,7 +96,8 @@ Page({
    */
   onLoad: function (options) {
     const db = wx.cloud.database();
-    const time = new Date().toLocaleDateString();
+    const date = new Date();
+    let time = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
     db.collection('name').doc('name').get().then(res => {
       this.setData({
         name: res.data.name
@@ -154,6 +155,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.onLoad()
+    wx.stopPullDownRefresh();
   },
 
   /**
