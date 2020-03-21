@@ -1,0 +1,33 @@
+/* miniprogram/pages/playground/playground.wxss */
+.name {
+  text-align: center;
+  font-size: 25px;
+  border-bottom-style: solid;
+  border-bottom-color: black; 
+  padding-bottom: 10px;
+}
+.key,.value,.img{
+  display: inline-block; 
+  vertical-align:middle;
+  font-size: 20px;
+  text-align: center;
+}
+.key{
+  width: 60%;
+
+}
+.value{
+  width: 20%
+}
+.img{
+  width: 20%
+}
+image{
+  width: 18px;
+  height: 18px;
+}
+.create {
+  width: 100%;
+  position: absolute;
+  bottom: 10px
+}

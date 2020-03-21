@@ -1,0 +1,51 @@
+/* miniprogram/pages/user/user.wxss */
+.branch_name {
+  text-align: center;
+  font-size: 25px;
+  border-bottom-style: solid;
+  border-bottom-color: black; 
+  padding-bottom: 10px;
+}
+.branch_name input{
+  height: 26px
+}
+.array,.name,.img{
+  display: inline-block; 
+  vertical-align:middle;
+  font-size: 20px;
+  text-align: center;
+  width: 50%;
+}
+image{
+  width: 18px;
+  height: 18px;
+}
+.title {
+  vertical-align:middle;
+  font-size: 20px;
+  text-align: center;
+}
+.new {
+  margin: 20px 0;
+  font-size: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: black; 
+  padding-bottom: 10px;
+}
+.new input {
+  display: inline-block;
+  width: 50%;
+  vertical-align:middle;
+  font-size: 20px;
+  text-align: center;
+}
+.submit {
+  display: block;
+  width: 100%;
+  position: fixed;
+  bottom: 10px;
+  z-index: 10
+}
+.array_container {
+  padding-bottom: 50px;
+}
