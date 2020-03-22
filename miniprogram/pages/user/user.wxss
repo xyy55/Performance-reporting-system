@@ -49,3 +49,7 @@ image{
 .array_container {
   padding-bottom: 50px;
 }
+.time,.branch_name input {
+  display: inline-block;
+  width: 50%
+}

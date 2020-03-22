@@ -15,8 +15,16 @@ App({
       })
     }
     
-    let date = new Date();
-    let time = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+    // let date = new Date();
+    // let time = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+    let d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    let time = [year, month, day].join('/')
 
     this.globalData = {
       time:time,

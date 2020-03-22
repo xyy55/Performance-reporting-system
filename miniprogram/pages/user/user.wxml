@@ -1,5 +1,8 @@
 <!--miniprogram/pages/user/user.wxml-->
-<view class="branch_name"><input value="北湖" bindinput="input_branch"></input></view>
+<view class="branch_name">
+  <input value="北湖" bindinput="input_branch"></input>
+  <picker mode="date" value="{{time}}" bindchange="input_time" class="time">{{time}}</picker>
+</view>
 <view class="name_container">
   <view class="title">人员</view>
   <view wx:for="{{name}}" class="item">

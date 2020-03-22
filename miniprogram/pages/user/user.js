@@ -9,7 +9,8 @@ Page({
     array:[],
     name:[],
     new_name:'',
-    new_array:''
+    new_array:'',
+    time:''
   },
   del_name:function(e){
     let name = this.data.name
@@ -56,19 +57,37 @@ Page({
   input_branch:function(e){
     app.globalData.branch_name = e.detail.value
   },
+  input_time:function(e){
+    let time = e.detail.value.replace(/-/g, '/')
+    this.setData({
+      time: time
+    })
+    app.globalData.time = time
+  },
   submit:function(e){
-    let data = {
-      name:this.data.name,
-      performance_title:this.data.array
-    }
-    wx.cloud.callFunction({
-      name: 'db2',
-      data: data,
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res)
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '确定提交吗？',
+      success(res) {
+        if (res.confirm) {
+          let data = {
+            name: that.data.name,
+            performance_title: that.data.array
+          }
+          wx.cloud.callFunction({
+            name: 'db2',
+            data: data,
+            success: res => {
+              console.log('[云函数] [login] user openid: ', res)
+            },
+            fail: err => {
+              console.error('[云函数] [login] 调用失败', err)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   },
@@ -78,6 +97,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      time:app.globalData.time,
       name:app.globalData.name,
       array: app.globalData.array
     })

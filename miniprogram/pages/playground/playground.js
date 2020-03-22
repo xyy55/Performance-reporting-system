@@ -42,7 +42,6 @@ Page({
         }
       }
     })
-    console.log(finall)
   },
 
   /**

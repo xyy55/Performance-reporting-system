@@ -68,27 +68,46 @@ Page({
     })
   },
   submit:function(e){
-    let data = this.data
-    let upload_data = {
-      'time':app.globalData.time,
-      'name':data.name[data.name_index],
-      'performance':data.performance
-    }
-    let arg_data = {
-      'table':'performance',
-      'opt':'add',
-      'data':upload_data
-    }
-    wx.cloud.callFunction({
-      name: 'db',
-      data: arg_data,
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res)
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '真的要提交吗？',
+      success(res) {
+        if (res.confirm) {
+          let data = that.data
+          let d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+          if (month.length < 2) month = '0' + month;
+          if (day.length < 2) day = '0' + day;
+          let time = [year, month, day].join('/')
+          let upload_data = {
+            'time': time,
+            'name': data.name[data.name_index],
+            'performance': data.performance
+          }
+          let arg_data = {
+            'table': 'performance',
+            'opt': 'add',
+            'data': upload_data
+          }
+          wx.cloud.callFunction({
+            name: 'db',
+            data: arg_data,
+            success: res => {
+              console.log('[云函数] [login] user openid: ', res)
+            },
+            fail: err => {
+              console.error('[云函数] [login] 调用失败', err)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
-    })
+    }) 
   },
 
   /**
@@ -96,8 +115,14 @@ Page({
    */
   onLoad: function (options) {
     const db = wx.cloud.database();
-    const date = new Date();
-    let time = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+    // let d = new Date(),
+    //     month = '' + (d.getMonth() + 1),
+    //     day = '' + d.getDate(),
+    //     year = d.getFullYear();
+
+    // if (month.length < 2) month = '0' + month;
+    // if (day.length < 2) day = '0' + day;
+    // let time = [year, month, day].join('/')
     db.collection('name').doc('name').get().then(res => {
       this.setData({
         name: res.data.name
@@ -112,7 +137,7 @@ Page({
     });
     db.collection('performance').where({
       name: this.data.name[this.data.name_index],
-      time: time
+      time: app.globalData.time
     }).get().then(res => {
       if (res.data.length != 0) {
         this.setData({
