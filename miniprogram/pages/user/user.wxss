@@ -1,13 +1,9 @@
 /* miniprogram/pages/user/user.wxss */
 .branch_name {
-  text-align: center;
   font-size: 25px;
   border-bottom-style: solid;
   border-bottom-color: black; 
   padding-bottom: 10px;
-}
-.branch_name input{
-  height: 26px
 }
 .array,.name,.img{
   display: inline-block; 
@@ -50,6 +46,8 @@ image{
   padding-bottom: 50px;
 }
 .time,.branch_name input {
+  height: 26px;
+  text-align: center;
   display: inline-block;
   width: 50%
 }

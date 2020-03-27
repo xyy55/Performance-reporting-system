@@ -36,12 +36,12 @@ image{
   border-top: solid black;
   padding-top: 10px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 60px
 }
 .submit {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 10px  
 }
 .performance {

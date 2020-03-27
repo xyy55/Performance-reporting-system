@@ -9,15 +9,20 @@ Page({
     performance:[]
   },
   create:function(e){
-    let head = app.globalData.branch_name + app.globalData.time+'业绩：'
+    let head = app.globalData.branch_name + app.globalData.time+'业绩： '
     let performance = this.data.performance
     let personal_performance = ''
     let total_performance = {}
     let total_performance_sum = ''
+    let business_performance = ''
     for(let item of performance){
-      personal_performance += '⭕'+item.name + " "
+      personal_performance += '⭕'+item.name + "  "
       for(let key in item.performance){
-        personal_performance += key + item.performance[key] + ' '
+        if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1){
+          personal_performance += key + item.performance[key] + '万  '
+        }else{
+          personal_performance += key + item.performance[key] + '  '
+        }
         if(key in total_performance == false){
           total_performance[key] = parseInt(item.performance[key])
         }else{
@@ -27,9 +32,17 @@ Page({
       personal_performance += "\n"
     }
     for(let key in total_performance){
-      total_performance_sum += key + total_performance[key] + ' '
+      if(key.indexOf('对公') != -1){
+        business_performance += key + total_performance[key] + '  '
+      }else{
+        if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1) {
+          total_performance_sum += key + total_performance[key] + '万  '
+        }else{
+          total_performance_sum += key + total_performance[key] + '  '
+        }
+      }
     }
-    let finall = head + '\n' + personal_performance + '⭕' +head + total_performance_sum
+    let finall = head + '\n' + personal_performance + '⭕' + head + total_performance_sum + '\n\n' + business_performance
     wx.setClipboardData({ data: finall })
     wx.showModal({
       title: '链接已经复制到剪切板',

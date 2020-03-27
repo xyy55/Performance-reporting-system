@@ -28,6 +28,9 @@ image{
 }
 .create {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 10px
+}
+.all {
+  padding-bottom: 55px
 }

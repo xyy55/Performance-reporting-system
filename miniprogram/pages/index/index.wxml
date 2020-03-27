@@ -27,4 +27,3 @@
   <button type="primary" bindtap="submit">提交</button>
 </view>
 
-

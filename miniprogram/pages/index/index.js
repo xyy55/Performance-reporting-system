@@ -128,23 +128,24 @@ Page({
         name: res.data.name
       })
       app.globalData.name =  res.data.name
-    });
-    db.collection('performance_title').doc('performance_title').get().then(res => {
-      this.setData({
-        array: res.data.performance_title
-      })
-      app.globalData.array = res.data.performance_title
-    });
-    db.collection('performance').where({
-      name: this.data.name[this.data.name_index],
-      time: app.globalData.time
-    }).get().then(res => {
-      if (res.data.length != 0) {
+      db.collection('performance_title').doc('performance_title').get().then(res => {
         this.setData({
-          performance: res.data[0].performance
+          array: res.data.performance_title
         })
-      }
-    })
+        app.globalData.array = res.data.performance_title
+      });
+      db.collection('performance').where({
+        name: this.data.name[this.data.name_index],
+        time: app.globalData.time
+      }).get().then(res => {
+        if (res.data.length != 0) {
+          this.setData({
+            performance: res.data[0].performance
+          })
+        }
+      })
+    });
+    
   },
 
   /**
