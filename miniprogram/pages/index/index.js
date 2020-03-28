@@ -115,14 +115,6 @@ Page({
    */
   onLoad: function (options) {
     const db = wx.cloud.database();
-    // let d = new Date(),
-    //     month = '' + (d.getMonth() + 1),
-    //     day = '' + d.getDate(),
-    //     year = d.getFullYear();
-
-    // if (month.length < 2) month = '0' + month;
-    // if (day.length < 2) day = '0' + day;
-    // let time = [year, month, day].join('/')
     db.collection('name').doc('name').get().then(res => {
       this.setData({
         name: res.data.name
