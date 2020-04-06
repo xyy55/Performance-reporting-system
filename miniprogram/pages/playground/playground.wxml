@@ -13,3 +13,6 @@
 <view wx:if="{{!isHidden}}" class="red_top" bindtap="hidde_red_top" catchlongtap="function(){}">
   <canvas bindlongtap="save_img" catchtap="function(){}" canvas-id='red_top' style='width:200px;height:300px;'></canvas>
 </view>
+<!-- <view hidden="{{isHidden}}" class="red_top" bindtap="hidde_red_top" catchlongpress="function(){}">
+  <canvas bindlongpress="save_img" catchtap="function(){}" canvas-id='red_top' style='width:200px;height:300px;'></canvas>
+</view> -->

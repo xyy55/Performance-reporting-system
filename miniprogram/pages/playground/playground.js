@@ -48,7 +48,7 @@ Page({
     let finall = head + '\n' + personal_performance + '⭕' + head + total_performance_sum + '\n\n' + business_performance
     wx.setClipboardData({ data: finall })
     wx.showModal({
-      title: '链接已经复制到剪切板',
+      title: '内容已经复制到剪切板',
       content: finall,
       success(res) {
         if (res.confirm) {
