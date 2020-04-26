@@ -21,15 +21,17 @@ Page({
     for(let item of performance){
       personal_performance += '⭕'+item.name + "  "
       for(let key in item.performance){
-        if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1){
+        if(key.indexOf('定投') != -1 ){
+          personal_performance += key + item.performance[key] + '户  '
+        }else if(key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1){
           personal_performance += key + item.performance[key] + '万  '
         }else{
           personal_performance += key + item.performance[key] + '  '
         }
         if(key in total_performance == false){
-          total_performance[key] = parseInt(item.performance[key])
+          total_performance[key] = parseFloat(item.performance[key])
         }else{
-          total_performance[key] += parseInt(item.performance[key])
+          total_performance[key] += parseFloat(item.performance[key])
         }
       }
       personal_performance += "\n"
@@ -38,7 +40,9 @@ Page({
       if(key.indexOf('对公') != -1){
         business_performance += key + total_performance[key] + '  '
       }else{
-        if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1) {
+        if(key.indexOf('定投') != -1 ){
+          total_performance_sum += key + total_performance[key] + '户  '
+        }else if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1) {
           total_performance_sum += key + total_performance[key] + '万  '
         }else{
           total_performance_sum += key + total_performance[key] + '  '
@@ -62,7 +66,9 @@ Page({
   create_red_top:function(e){
     let name = app.globalData.branch_name + e.currentTarget.dataset.name
     let key = e.currentTarget.dataset.key
-    if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1) {
+    if(key.indexOf('定投') != -1 ){
+      key = '成功营销' + key + e.currentTarget.dataset.value + "户"
+    } else if (key.indexOf('期') != -1 || key.indexOf('贷') != -1 || key.indexOf('基金') != -1 || key.indexOf('保险') != -1) {
       key = '成功营销' + key + e.currentTarget.dataset.value + "万"
     } else if (key.indexOf('对公') != -1) {
       key = '成功办理' + key + e.currentTarget.dataset.value

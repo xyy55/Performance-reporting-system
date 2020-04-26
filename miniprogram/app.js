@@ -30,7 +30,7 @@ App({
       time:time,
       name:'',
       array:'',
-      branch_name:'北湖'
+      branch_name:'北郊北湖'
     }
   }
 })

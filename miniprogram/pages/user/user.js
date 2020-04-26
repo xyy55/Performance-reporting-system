@@ -10,7 +10,8 @@ Page({
     name:[],
     new_name:'',
     new_array:'',
-    time:''
+    time:'',
+    branch_name:''
   },
   del_name:function(e){
     let name = this.data.name
@@ -99,7 +100,8 @@ Page({
     this.setData({
       time:app.globalData.time,
       name:app.globalData.name,
-      array: app.globalData.array
+      array: app.globalData.array,
+      branch_name:app.globalData.branch_name
     })
   },
 

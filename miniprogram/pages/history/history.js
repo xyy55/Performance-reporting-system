@@ -52,9 +52,9 @@ Page({
           }else{
             for(let p of Object.keys(i.performance)){
               if(Object.keys(all_performance[i.name]).indexOf(p) === -1){
-                all_performance[i.name][p] = parseInt(i.performance[p])
+                all_performance[i.name][p] = parseFloat(i.performance[p])
               }else{
-                all_performance[i.name][p] = parseInt(all_performance[i.name][p]) + parseInt(i.performance[p])
+                all_performance[i.name][p] = parseFloat(all_performance[i.name][p]) + parseFloat(i.performance[p])
               }
             }
           }
